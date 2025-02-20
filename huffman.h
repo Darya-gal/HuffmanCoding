@@ -6,10 +6,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define BYTE_RANGE 256  // Количество возможных байтов (0-255)
-#define CODE_SIZE 256   // Максимальная длина кода Хаффмана
+#define BYTE_RANGE 256  // number of possible bytes (0-255)
+#define CODE_SIZE 256   // max length code Huffman
 
-// Структура узла дерева Хаффмана
+// tree node structure Huffman
 typedef struct node {
     unsigned char symb;
     unsigned char isSymb;
@@ -17,7 +17,7 @@ typedef struct node {
     struct node* left, * right, * next;
 } NODE;
 
-// Прототипы функций
+// prototypes of functions
 NODE* count_frequency(const char* filename);
 NODE* MakeTreeFromList(NODE* head);
 void generateHuffmanCodes(NODE* root, char* code, char codes[BYTE_RANGE][CODE_SIZE]);
