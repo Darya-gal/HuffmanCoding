@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "huffman.h"
 
-// Функция для подсчета частот символов
+// Function for counring symbols 
 NODE* count_frequency(const char* filename) {
     FILE* input = fopen(filename, "rb");
     if (!input) {
@@ -49,7 +49,7 @@ NODE* count_frequency(const char* filename) {
     return head;
 }
 
-// Функция построения дерева Хаффмана
+// Function of building a tree Huffman
 NODE* MakeTreeFromList(NODE* head) {
     if (!head) return NULL;
 
@@ -95,7 +95,7 @@ NODE* MakeTreeFromList(NODE* head) {
     return head;
 }
 
-// Функция генерации кодов Хаффмана
+// Function of generation code Huffman
 void generateHuffmanCodes(NODE* root, char* code, char codes[BYTE_RANGE][CODE_SIZE]) {
     if (!root) return;
 
@@ -117,7 +117,7 @@ void generateHuffmanCodes(NODE* root, char* code, char codes[BYTE_RANGE][CODE_SI
     generateHuffmanCodes(root->right, rightCode, codes);
 }
 
-// Кодирование файла
+// Coding file
 unsigned char* encodeFile(const char* filename, char codes[BYTE_RANGE][CODE_SIZE], size_t* encodedSize) {
     FILE* input = fopen(filename, "rb");
     if (!input) {
@@ -161,7 +161,7 @@ unsigned char* encodeFile(const char* filename, char codes[BYTE_RANGE][CODE_SIZE
     return encodedBuffer;
 }
 
-// Декодирование файла
+// Decoding file
 void decodeFile(const char* compressedFilename, const char* decompressedFilename, NODE* root) {
     FILE* input = fopen(compressedFilename, "rb");
     FILE* output = fopen(decompressedFilename, "wb");
@@ -188,7 +188,7 @@ void decodeFile(const char* compressedFilename, const char* decompressedFilename
     fclose(output);
 }
 
-// Запись битовых данных в файл
+// Recording bit data
 void writeCompressedFile(const char* outputFilename, unsigned char* encodedBuffer, size_t encodedSize) {
     FILE* output = fopen(outputFilename, "wb");
     if (!output) {
